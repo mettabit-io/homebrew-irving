@@ -1,0 +1,21 @@
+name: Test formula
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  audit-and-install:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v6
+      - name: Audit formula
+        run: brew audit --strict --formula Formula/laya-mlx.rb
+      - name: Install from source
+        run: brew install --build-from-source --formula Formula/laya-mlx.rb
+      - name: Run formula test
+        run: brew test --formula Formula/laya-mlx.rb
