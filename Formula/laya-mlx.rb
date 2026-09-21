@@ -9,6 +9,7 @@ class LayaMlx < Formula
 
   depends_on arch: :arm64
   depends_on macos: :sonoma
+  depends_on "libyaml"
   depends_on "python@3.13"
 
   resource "huggingface-hub" do
