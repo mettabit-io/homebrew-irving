@@ -104,13 +104,9 @@ class LayaMlx < Formula
     bin.write_exec_script libexec/"laya_mlx_server.py"
   end
 
-  def post_install
-    (var/"laya-mlx").mkpath
-  end
-
   service do
     run [opt_bin/"laya-mlx-server"]
-    environment_variables LAYA_HOST: "127.0.0.1",
+    environment_variables LAYA_HOST:  "127.0.0.1",
                           LAYA_MODEL: var/"laya-mlx/model",
                           LAYA_PORT:  "2997"
     keep_alive successful_exit: false
@@ -121,6 +117,6 @@ class LayaMlx < Formula
 
   test do
     assert_match "usage:", shell_output("#{bin}/laya-mlx --help")
-    assert_match "LAYA_MODEL", shell_output("#{bin}/laya-mlx-server", 1)
+    assert_match "LAYA_MODEL", shell_output(bin/"laya-mlx-server", 1)
   end
 end
