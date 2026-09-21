@@ -6,7 +6,7 @@ class LayaMlx < Formula
   url "https://files.pythonhosted.org/packages/88/18/56a244e4196db45b63fe51a42ee31480db97f8d2f3810b546fbac42f2bac/laya_mlx-0.1.0.tar.gz"
   sha256 "856a9e23d5c6f26e6e845d2c25dd9a75039086bb9b58fda2fbcaf6509b727da7"
   license "Apache-2.0"
-  revision 1
+  revision 2
 
   depends_on arch: :arm64
   depends_on "libyaml"
