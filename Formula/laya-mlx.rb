@@ -97,7 +97,7 @@ class LayaMlx < Formula
   def install
     venv = virtualenv_create(libexec, "python3.13")
 
-    resources.each do |resource|
+    resources.reject { |resource| resource.name == "laya-mlx-server" }.each do |resource|
       resource.stage do
         venv.pip_install Pathname.pwd/resource.downloader.basename
       end
