@@ -118,7 +118,7 @@ class LayaMlx < Formula
     run [opt_libexec/"bin/python", opt_libexec/"laya_mlx_server.py"]
     environment_variables LAYA_HOST:  "127.0.0.1",
                           LAYA_MODEL: var/"laya-mlx/model",
-                          LAYA_PORT:  "2997"
+                          LAYA_PORT:  "12997"
     keep_alive successful_exit: false
     working_dir var/"laya-mlx"
     log_path var/"log/laya-mlx.log"

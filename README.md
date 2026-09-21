@@ -26,11 +26,11 @@ After placing a compatible checkpoint at `$(brew --prefix)/var/laya-mlx/model`:
 
 ```sh
 brew services start laya-mlx
-curl -s http://127.0.0.1:2997/health
+curl -s http://127.0.0.1:12997/health
 ```
 
 The daemon is local-only. Docker workloads on the same Mac connect through
-`http://host.docker.internal:2997`.
+`http://host.docker.internal:12997`.
 
 See [operations documentation](docs/operations.md) for verification, upgrade,
 rollback, and model-cache handling.

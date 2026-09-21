@@ -97,7 +97,7 @@ def main():
         raise SystemExit(f"LAYA_MODEL does not exist or is not a directory: {model_path}")
 
     host = os.environ.get("LAYA_HOST", "127.0.0.1")
-    port = int(os.environ.get("LAYA_PORT", "2997"))
+    port = int(os.environ.get("LAYA_PORT", "12997"))
     logger.info("Loading Laya MLX model from: %s", model_path)
     agent = laya_mlx.load(model_path, dtype="float16")
     logger.info("Laya MLX model loaded successfully")
