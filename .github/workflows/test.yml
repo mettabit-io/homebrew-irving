@@ -13,9 +13,11 @@ jobs:
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v6
+      - name: Register tap from checkout
+        run: brew tap mettabit-io/irving "$GITHUB_WORKSPACE"
       - name: Audit formula
-        run: brew audit --strict --formula Formula/laya-mlx.rb
+        run: brew audit --strict --formula mettabit-io/irving/laya-mlx
       - name: Install from source
-        run: brew install --build-from-source --formula Formula/laya-mlx.rb
+        run: brew install --build-from-source mettabit-io/irving/laya-mlx
       - name: Run formula test
-        run: brew test --formula Formula/laya-mlx.rb
+        run: brew test --force mettabit-io/irving/laya-mlx
