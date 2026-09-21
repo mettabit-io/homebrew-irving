@@ -127,6 +127,6 @@ class LayaMlx < Formula
 
   test do
     assert_match "usage:", shell_output("#{bin}/laya-mlx --help")
-    assert_predicate libexec/"laya_mlx_server.py", :exist?
+    assert_path_exists libexec/"laya_mlx_server.py"
   end
 end
