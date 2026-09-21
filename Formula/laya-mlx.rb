@@ -107,7 +107,11 @@ class LayaMlx < Formula
     resource("laya-mlx-server").stage do
       libexec.install "laya_mlx_server.py"
     end
-    bin.write_exec_script libexec/"laya_mlx_server.py"
+    (bin/"laya-mlx-server").write <<~SH
+      #!/bin/bash
+      exec "#{libexec}/bin/python" "#{libexec}/laya_mlx_server.py" "$@"
+    SH
+    (bin/"laya-mlx-server").chmod 0755
   end
 
   service do
