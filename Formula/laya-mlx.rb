@@ -90,7 +90,15 @@ class LayaMlx < Formula
   end
 
   def install
-    virtualenv_install_with_resources
+    venv = virtualenv_create(libexec, "python3.13")
+
+    resources.each do |resource|
+      resource.stage do
+        venv.pip_install Pathname.pwd/resource.downloader.basename
+      end
+    end
+
+    venv.pip_install_and_link buildpath
   end
 
   test do
