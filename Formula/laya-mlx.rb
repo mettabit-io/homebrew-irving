@@ -115,7 +115,7 @@ class LayaMlx < Formula
   end
 
   service do
-    run [opt_bin/"laya-mlx-server"]
+    run [opt_libexec/"bin/python", opt_libexec/"laya_mlx_server.py"]
     environment_variables LAYA_HOST:  "127.0.0.1",
                           LAYA_MODEL: var/"laya-mlx/model",
                           LAYA_PORT:  "2997"
