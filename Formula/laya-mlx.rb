@@ -6,6 +6,7 @@ class LayaMlx < Formula
   url "https://files.pythonhosted.org/packages/88/18/56a244e4196db45b63fe51a42ee31480db97f8d2f3810b546fbac42f2bac/laya_mlx-0.1.0.tar.gz"
   sha256 "856a9e23d5c6f26e6e845d2c25dd9a75039086bb9b58fda2fbcaf6509b727da7"
   license "Apache-2.0"
+  revision 1
 
   depends_on arch: :arm64
   depends_on "libyaml"
@@ -88,20 +89,44 @@ class LayaMlx < Formula
     url "https://files.pythonhosted.org/packages/0b/a7/71ac2cff56fec219ed242bb11b8efb69fcc4bec75db06fb7bfe35de520e6/certifi-2026.7.22-py3-none-any.whl"
     sha256 "62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775"
   end
+  resource "laya-mlx-server" do
+    url "https://raw.githubusercontent.com/mettabit-io/homebrew-irving/1f523b9/server/laya_mlx_server.py"
+    sha256 "b19945ea5aa3e9630f37bd85d853a3daa1d1c44992ca279dfe3ee652a3c4940c"
+  end
 
   def install
     venv = virtualenv_create(libexec, "python3.13")
 
-    resources.each do |resource|
+    resources.reject { |resource| resource.name == "laya-mlx-server" }.each do |resource|
       resource.stage do
         venv.pip_install Pathname.pwd/resource.downloader.basename
       end
     end
 
     venv.pip_install_and_link buildpath
+    resource("laya-mlx-server").stage do
+      libexec.install "laya_mlx_server.py"
+    end
+    (bin/"laya-mlx-server").write <<~SH
+      #!/bin/bash
+      exec "#{libexec}/bin/python" "#{libexec}/laya_mlx_server.py" "$@"
+    SH
+    (bin/"laya-mlx-server").chmod 0755
+  end
+
+  service do
+    run [opt_libexec/"bin/python", opt_libexec/"laya_mlx_server.py"]
+    environment_variables LAYA_HOST:  "127.0.0.1",
+                          LAYA_MODEL: var/"laya-mlx/model",
+                          LAYA_PORT:  "2997"
+    keep_alive successful_exit: false
+    working_dir var/"laya-mlx"
+    log_path var/"log/laya-mlx.log"
+    error_log_path var/"log/laya-mlx.log"
   end
 
   test do
     assert_match "usage:", shell_output("#{bin}/laya-mlx --help")
+    assert_path_exists libexec/"laya_mlx_server.py"
   end
 end
