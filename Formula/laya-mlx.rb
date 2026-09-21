@@ -89,6 +89,10 @@ class LayaMlx < Formula
     url "https://files.pythonhosted.org/packages/0b/a7/71ac2cff56fec219ed242bb11b8efb69fcc4bec75db06fb7bfe35de520e6/certifi-2026.7.22-py3-none-any.whl"
     sha256 "62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775"
   end
+  resource "laya-mlx-server" do
+    url "https://raw.githubusercontent.com/mettabit-io/homebrew-irving/1f523b9/server/laya_mlx_server.py"
+    sha256 "b19945ea5aa3e9630f37bd85d853a3daa1d1c44992ca279dfe3ee652a3c4940c"
+  end
 
   def install
     venv = virtualenv_create(libexec, "python3.13")
@@ -100,7 +104,9 @@ class LayaMlx < Formula
     end
 
     venv.pip_install_and_link buildpath
-    libexec.install Pathname(__dir__).parent/"server/laya_mlx_server.py"
+    resource("laya-mlx-server").stage do
+      libexec.install "laya_mlx_server.py"
+    end
     bin.write_exec_script libexec/"laya_mlx_server.py"
   end
 
