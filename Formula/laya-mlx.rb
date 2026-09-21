@@ -33,12 +33,12 @@ class LayaMlx < Formula
     sha256 "2d400746a40668fc9dec9810239072b40b4484b640a8c38fd654a024c7a1bf55"
   end
   resource "mlx" do
-    url "https://files.pythonhosted.org/packages/38/96/9db8e27f384d83d3816ec7392c7a2b375979c14509d7f345d1fa3d05cac8/mlx-0.32.2-cp313-cp313-macosx_26_0_arm64.whl"
-    sha256 "df8c75e509de868fca148dfeb38d92ce956eed386569c87caeb72bd16d2d6962"
+    url "https://files.pythonhosted.org/packages/5e/d7/0f9717acf577621ff0899f311eaa16abbfd2ee5a5c2156313f49d080cb5f/mlx-0.32.2-cp313-cp313-macosx_14_0_arm64.whl"
+    sha256 "65d3d29b66045ed8dd2d8e437c8770de325843c364f7b7c38cd8ae90a7eec854"
   end
   resource "mlx-metal" do
-    url "https://files.pythonhosted.org/packages/dd/cd/4e50bf325100e7165e13d025f264362bf0009196269f9eaf87f2c6e738a2/mlx_metal-0.32.2-py3-none-macosx_26_0_arm64.whl"
-    sha256 "e6abeac9ac5265830c9c1541b6f96e9be37a85c2446763a46ad466c63a3837ab"
+    url "https://files.pythonhosted.org/packages/f7/ab/ba1952908c5d2a5070cf1cfbfea0161c4751ea62299e2776819810917483/mlx_metal-0.32.2-py3-none-macosx_14_0_arm64.whl"
+    sha256 "3825fff379dbc107dd3413e564a06caeaa24819910ec49c0439e454c06a1b9b8"
   end
   resource "tokenizers" do
     url "https://files.pythonhosted.org/packages/67/49/22da045a91732384d3a3771816bf188dc5a1f702c32e635afa7c679c0bef/tokenizers-0.23.2-cp310-abi3-macosx_11_0_arm64.whl"
