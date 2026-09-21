@@ -7,7 +7,7 @@ service:
 
 ```sh
 brew services start laya-mlx
-curl -s http://127.0.0.1:2997/health
+curl -s http://127.0.0.1:12997/health
 ```
 
 The service accepts generic typed decisions at `POST /v1/systemone`; `/predict`
@@ -15,7 +15,7 @@ is a compatibility alias. It does not include Irving-specific topic-change or
 grounding endpoints.
 
 The service binds to loopback only. Docker workloads on the same Mac must use
-`http://host.docker.internal:2997`; do not expose this unauthenticated service
+`http://host.docker.internal:12997`; do not expose this unauthenticated service
 through Tailscale or the public internet. Inspect it with `brew services list`
 and `tail -f "$(brew --prefix)/var/log/laya-mlx.log"`.
 
