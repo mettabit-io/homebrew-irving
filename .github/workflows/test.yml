@@ -1,0 +1,23 @@
+name: Test formula
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  audit-and-install:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v6
+      - name: Register tap from checkout
+        run: brew tap mettabit-io/irving "$GITHUB_WORKSPACE"
+      - name: Audit formula
+        run: brew audit --strict --formula mettabit-io/irving/laya-mlx
+      - name: Install from source
+        run: brew install --build-from-source mettabit-io/irving/laya-mlx
+      - name: Run formula test
+        run: brew test --force mettabit-io/irving/laya-mlx
